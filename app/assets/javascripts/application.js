@@ -16,3 +16,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require base
+//= require datatables
+//= require employees_table

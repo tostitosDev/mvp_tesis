@@ -1,0 +1,35 @@
+.row.content
+  .col-md-12  
+    hr
+    h2.pl-3 
+      | Trabajadores 
+      = link_to new_employee_path do
+        = icon('fas', 'plus')
+    hr
+
+.row
+  .col-md-12.mt-3
+    #content.tab-content
+      #sent.tab-pane.fade.show.active role="tabpanel"
+        div.container-fluid.mb-4
+          table.table.responsive.table-striped.table-bordered.sentTable cellspacing="0" width="100%"
+            thead.thead-dark
+              tr
+                th Nombres
+                th Apellido Paterno
+                th Apellido Materno
+                th Rut
+                th Correo
+                th Teléfono
+                th Opciones
+            tbody[style='text-transform: capitalize']
+              - @employees.each do |e|
+                tr
+                  td= e.names 
+                  td= e.last_name
+                  td= e.mother_last_name
+                  td= e.rut
+                  td= e.email
+                  td= e.phone
+                  td.text-center = icon('fas', 'edit')
+                  

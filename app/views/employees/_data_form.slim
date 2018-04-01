@@ -1,0 +1,29 @@
+h2 Creación de trabajador
+hr
+  h4 
+    strong Datos personales
+hr
+#userData
+  .form-row
+    .form-group.col-md-6
+      h4 for="InputName"  Rut
+      = employee.text_field :rut, {class: "form-control", id: "inputName", placeholder: "Ingrese su rut", required: true}
+    .form-group.col-md-6
+      h4 for="InputName"  Nombres
+      = employee.text_field :names, {class: "form-control", id: "inputName", placeholder: "Ingrese sus nombres", required: true}
+  .form-row
+    .form-group.col-md-6
+      h4 for="InputLastName" Apellido Paterno
+      = employee.text_field :last_name, {class: "form-control", id: "inputLastName", placeholder:"Ingrese su apellido paterno", required: true}
+    .form-group.col-md-6
+      h4 for="InputLastName" Apellido Materno
+      = employee.text_field :mother_last_name, {class: "form-control", id: "inputLastName", placeholder:"Ingrese su apellido materno", required: true}
+  .form-row
+    .form-group.col-md-6.has-danger
+      h4 for="InputEmail1"  Correo electrónico
+      = employee.email_field :email, {class: "form-control", id: "inputEmail1", placeholder:"email@ejemplo.com", required: true}
+    .form-group.col-md-6
+      h4 for="InputPhone"  Teléfono
+      = employee.text_field :phone, {class: "form-control", id: "inputPhone", placeholder: "+569 9999 5555", required: true}
+  .form-row
+    = submit_tag("Enviar", id: "buttonSubmit", class: "btn btn-dark") 

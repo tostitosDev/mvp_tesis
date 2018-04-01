@@ -1,0 +1,5 @@
+.pl-3
+  = form_for @employee, url:  employees_path, html: {id: "formEmployee", autocomplete: "off"} do |employee|  
+    .row
+      #contact_form.col-12.col-md-12
+          = render partial: 'data_form', locals: { employee: employee }

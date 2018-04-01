@@ -1,2 +1,34 @@
-h1 Dashboards#index
-p Find me in app/views/dashboards/index.html.slim
+h5
+  |Para hoy 
+  = Time.now.strftime("%d/%m/%Y") 
+hr
+.row.px-4.justify-content-around
+  .col-11.col-md-3
+    .card.text-white.bg-success 
+      .card-body.text-center
+        h5.card-title 
+          | Presentes 
+          = icon('fas', 'check')
+        strong.card-text.text-white 5
+  .col-11.col-md-3
+    .card.text-white.bg-warning 
+      .card-body.text-center
+        h5.card-title 
+          | Atrasados 
+          = icon('fas', 'stopwatch')
+        strong.card-text.text-white 2
+  .col-11.col-md-3
+    .card.text-white.bg-danger 
+      .card-body.text-center
+        h5.card-title 
+          | Ausentes 
+          = icon('fas', 'calendar-times')
+        strong.card-text.text-white 1
+
+  .col-11.col-md-3
+    .card.text-white.bg-secondary 
+      .card-body.text-center
+        h5.card-title 
+          | Fuera de lugar 
+          = icon('fas', 'crosshairs') 
+        strong.card-text.text-white 1

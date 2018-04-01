@@ -198,6 +198,9 @@ a.article, a.article:hover {
     /*transition: all 0.3s; */
 }
 
+.col-11{
+    margin-bottom: 10px;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
