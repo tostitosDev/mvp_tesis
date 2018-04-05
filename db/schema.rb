@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401182229) do
+ActiveRecord::Schema.define(version: 20180403214523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,4 +26,15 @@ ActiveRecord::Schema.define(version: 20180401182229) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "marks", force: :cascade do |t|
+    t.datetime "date_time_mark"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "employee_id"
+    t.index ["employee_id"], name: "index_marks_on_employee_id"
+  end
+
+  add_foreign_key "marks", "employees"
 end

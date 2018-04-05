@@ -1,0 +1,28 @@
+.row.content
+  .col-md-12  
+    hr
+    h2.pl-3 
+      | Marcaciones 
+    hr
+
+.row
+  .col-md-12.mt-3
+    #content.tab-content
+      #sent.tab-pane.fade.show.active role="tabpanel"
+        div.container-fluid.mb-4
+          table.table.responsive.table-striped.table-bordered.sentTable cellspacing="0" width="100%"
+            thead.thead-dark
+              tr
+                th Hora
+                th Fecha
+                th Rut
+                th Nombre
+                th Tipo
+            tbody[style='text-transform: capitalize']
+              - @marks.each do |m|
+                tr
+                  td= m.date_time_mark 
+                  td= m.date_time_mark
+                  td= m.employee.rut
+                  td= m.employee.nombre
+                  td= m.aasm_state                  

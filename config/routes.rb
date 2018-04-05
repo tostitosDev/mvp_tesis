@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'marks/index'
+
   resources :employees
   get 'dashboards/index'
   root 'dashboards#index'

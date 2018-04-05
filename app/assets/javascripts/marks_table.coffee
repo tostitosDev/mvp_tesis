@@ -1,4 +1,4 @@
-class employeesTable
+class marksTable
   @bind : ()->
     for el in $('.sentTable').not('.dataTable')
       sentTable = $(el)
@@ -8,7 +8,7 @@ class employeesTable
         buttons: [{ 
           extend: 'excelHtml5', 
           text: 'Descargar', 
-          title: 'Empleados',
+          title: 'Marcaciones',
           exportOptions: {
             columns: [ 0, 1, 2, 3, 4, 5 ]
           }
@@ -20,7 +20,7 @@ class employeesTable
           "infoEmpty": "No hay registros",
           "infoFiltered": "(filtrado de un total de _MAX_)",
           "search":         "Buscar:",
-          "searchPlaceholder": "EJ: Pedro Perez",
+          "searchPlaceholder": "EJ: Entrada",
           "paginate": {
             "first":      "Inicio",
             "last":       "Final",
@@ -29,4 +29,4 @@ class employeesTable
           },
         } 
 
-document.addEventListener('turbolinks:load', employeesTable.bind)
+document.addEventListener('turbolinks:load', marksTable.bind)
