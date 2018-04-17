@@ -17,12 +17,14 @@
                 th Fecha
                 th Rut
                 th Nombre
+                th Estado
                 th Tipo
             tbody[style='text-transform: capitalize']
               - @marks.each do |m|
                 tr
-                  td= m.date_time_mark 
-                  td= m.date_time_mark
+                  td= m.date_time_mark.strftime('%T') 
+                  td= m.date_time_mark.strftime('%d/%m/%Y') 
                   td= m.employee.rut
-                  td= m.employee.nombre
-                  td= m.aasm_state                  
+                  td= m.employee.names
+                  td= m.aasm_state  
+                  td= m.type_mark.name_type

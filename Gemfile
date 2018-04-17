@@ -38,7 +38,10 @@ gem 'jquery-rails'
 #UI
 gem 'slim'
 gem "slim-rails"
+#State
+gem 'aasm'
 
+gem 'rack-cors'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

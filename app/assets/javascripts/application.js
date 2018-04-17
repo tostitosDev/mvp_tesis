@@ -18,3 +18,5 @@
 //= require base
 //= require datatables
 //= require employees_table
+//= require jquery.rut.js
+//= require validate

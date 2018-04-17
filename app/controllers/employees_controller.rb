@@ -15,6 +15,20 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    Employee.transaction do
+      @employee = Employee.find(params[:id])
+      @employee.update_attributes employee_params
+      flash[:success] = "Se ha actualizado exitosamente."
+      redirect_to employees_path
+    end
+  end
+
+
   def employee_params
     params.require(:employee).permit(
       :names,
@@ -23,6 +37,6 @@ class EmployeesController < ApplicationController
       :phone,
       :rut,
       :email
-      )
+    )
   end
 end

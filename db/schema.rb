@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403214523) do
+ActiveRecord::Schema.define(version: 20180417020555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20180403214523) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "fingerprints", force: :cascade do |t|
+    t.string "hash_fingerprint"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "employee_id"
+    t.integer "id_in_sensor"
+    t.index ["employee_id"], name: "index_fingerprints_on_employee_id"
+  end
+
   create_table "marks", force: :cascade do |t|
     t.datetime "date_time_mark"
     t.float "latitude"
@@ -33,8 +42,19 @@ ActiveRecord::Schema.define(version: 20180403214523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "employee_id"
+    t.string "aasm_state"
+    t.bigint "type_mark_id"
     t.index ["employee_id"], name: "index_marks_on_employee_id"
+    t.index ["type_mark_id"], name: "index_marks_on_type_mark_id"
   end
 
+  create_table "type_marks", force: :cascade do |t|
+    t.string "name_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "fingerprints", "employees"
   add_foreign_key "marks", "employees"
+  add_foreign_key "marks", "type_marks"
 end

@@ -1,9 +1,9 @@
 .pl-3
-  = form_for @employee, url:  employees_path, html: {id: "formEmployee", autocomplete: "off"} do |employee|  
+  = form_for @employee, url:  employee_path, html: {method: 'put',id: "formEmployee", autocomplete: "off"} do |employee|  
     .row
       #contact_form.col-12.col-md-12
         h2 
           = link_to employees_path do
             = icon('fas', 'arrow-left') 
-          |  Creación de trabajador
+          |  Edición de trabajador
         = render partial: 'data_form', locals: { employee: employee }

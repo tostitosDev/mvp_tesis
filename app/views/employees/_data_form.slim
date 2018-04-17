@@ -1,7 +1,3 @@
-h2 
-  = link_to employees_path do
-    = icon('fas', 'arrow-left') 
-  |  Creación de trabajador
 hr
   h4 
     strong Datos personales
@@ -10,7 +6,7 @@ hr
   .form-row
     .form-group.col-md-6
       h4 for="InputName"  Rut
-      = employee.text_field :rut, {class: "form-control", id: "inputName", placeholder: "Ingrese su rut", required: true}
+      = employee.text_field :rut, {class: "form-control", id: "inputRut", placeholder: "Ingrese su rut", required: true}
     .form-group.col-md-6
       h4 for="InputName"  Nombres
       = employee.text_field :names, {class: "form-control", id: "inputName", placeholder: "Ingrese su(s) nombre(s)", required: true}

@@ -1,0 +1,2 @@
+class TypeMark < ApplicationRecord
+end
