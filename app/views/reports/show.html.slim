@@ -1,0 +1,27 @@
+.row.content
+  .col-md-12  
+    hr
+    h2.pl-3 
+      | Reporte mensual: 
+      | #{@employee.names} #{@employee.last_name} #{@employee.mother_last_name}
+    hr
+
+.row
+  .col-md-12.mt-3
+    #content.tab-content
+      #sent.tab-pane.fade.show.active role="tabpanel"
+        div.container-fluid.mb-4
+          table.table.responsive.table-striped.table-bordered.sentTable cellspacing="0" width="100%"
+            thead.thead-dark
+              tr
+                th Fecha
+                th Hora Entrada
+                th Hora Salida colación
+                th Hora Entrada colación
+                th Hora Salida
+                th Tiempo colación
+                th Tiempo trabajado
+                th Tiempo no trabajado
+
+            tbody[style='text-transform: capitalize']
+              

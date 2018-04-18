@@ -4,9 +4,12 @@ Rails.application.routes.draw do
 
   resources :employees
   resources :marks
-  resources :reports
+  resources :reports, only: [:index]
+
   get 'dashboards/index'
   root 'dashboards#index'
+
+  get 'reports/employees/:employee_id' => 'reports#show', :as => 'report_employees'
 
   namespace :api, defaults: { format: "json" } do
     namespace :v1 do

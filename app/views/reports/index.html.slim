@@ -1,2 +1,31 @@
-h1 Reports#index
-p Find me in app/views/reports/index.html.slim
+.row.content
+  .col-md-12  
+    hr
+    h2.pl-3 
+      | Trabajadores 
+    hr
+
+.row
+  .col-md-12.mt-3
+    #content.tab-content
+      #sent.tab-pane.fade.show.active role="tabpanel"
+        div.container-fluid.mb-4
+          table.table.responsive.table-striped.table-bordered.sentTable cellspacing="0" width="100%"
+            thead.thead-dark
+              tr
+                th Nombres
+                th Apellido Paterno
+                th Apellido Materno
+                th Rut
+                th Reporte
+            tbody[style='text-transform: capitalize']
+              - @employees.each do |e|
+                tr
+                  td= e.names 
+                  td= e.last_name
+                  td= e.mother_last_name
+                  td= e.rut
+                  td.text-center 
+                    =link_to report_employees_path(e.id), {class: 'btn btn-danger'} do
+                      = icon('fas', 'file-alt')                  
+                    
