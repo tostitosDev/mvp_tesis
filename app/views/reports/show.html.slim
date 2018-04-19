@@ -21,7 +21,7 @@
                 th Hora salida
                 th Tiempo colación
                 th Tiempo trabajado
-                th Tiempo no trabajado
+                <!-- th Tiempo no trabajado-->
 
             tbody[style='text-transform: capitalize']
               - @summary.each do |day|
@@ -33,4 +33,4 @@
                   td= day.second[:time_out]
                   td= day.second[:collation_time]
                   td= day.second[:work_time]
-                  td hola
+                  <!---td hola -->

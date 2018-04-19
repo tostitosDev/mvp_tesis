@@ -9,21 +9,24 @@ hr
         h5.card-title 
           | Presentes 
           = icon('fas', 'check')
-        strong.card-text.text-white 5
+        strong.card-text.text-white 
+          = @correct.count
   .col-11.col-md-3
     .card.text-white.bg-warning 
       .card-body.text-center
         h5.card-title 
           | Atrasados 
           = icon('fas', 'stopwatch')
-        strong.card-text.text-white 2
+        strong.card-text.text-white 
+          = @delayed.count
   .col-11.col-md-3
     .card.text-white.bg-danger 
       .card-body.text-center
         h5.card-title 
           | Ausentes 
           = icon('fas', 'calendar-times')
-        strong.card-text.text-white 1
+        strong.card-text.text-white 
+          = @out.count
 
   .col-11.col-md-3
     .card.text-white.bg-secondary 
@@ -31,4 +34,5 @@ hr
         h5.card-title 
           | Fuera de lugar 
           = icon('fas', 'crosshairs') 
-        strong.card-text.text-white 1
+        strong.card-text.text-white 
+          = @away.count
