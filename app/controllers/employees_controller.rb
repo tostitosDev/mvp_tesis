@@ -11,6 +11,8 @@ class EmployeesController < ApplicationController
     Employee.transaction do
       @employee = Employee.create employee_params
       flash[:success] = "Se ha creado exitosamente."
+      @schedule = Schedule.last
+      @employee_schedule = EmployeeSchedule.create employee_id: @employee.id, schedule_id: @schedule.id
       redirect_to employees_path
     end
   end

@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
     end
     daily_summary[:collation_time] = calculate_collation daily_summary
     daily_summary[:work_time] = calculate_work daily_summary
-
+    daily_summary[:no_work_time] = calculate_no_work daily_summary
     daily_summary
   end
 

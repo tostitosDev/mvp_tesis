@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419053756) do
+ActiveRecord::Schema.define(version: 20180419064026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,18 @@ ActiveRecord::Schema.define(version: 20180419053756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "schedule_id"
+    t.string "collation_time"
+    t.string "work_time"
     t.index ["schedule_id"], name: "index_detail_schedules_on_schedule_id"
+  end
+
+  create_table "employee_schedules", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "schedule_id"
+    t.bigint "employee_id"
+    t.index ["employee_id"], name: "index_employee_schedules_on_employee_id"
+    t.index ["schedule_id"], name: "index_employee_schedules_on_schedule_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -73,6 +84,8 @@ ActiveRecord::Schema.define(version: 20180419053756) do
   end
 
   add_foreign_key "detail_schedules", "schedules"
+  add_foreign_key "employee_schedules", "employees"
+  add_foreign_key "employee_schedules", "schedules"
   add_foreign_key "fingerprints", "employees"
   add_foreign_key "marks", "employees"
   add_foreign_key "marks", "type_marks"
