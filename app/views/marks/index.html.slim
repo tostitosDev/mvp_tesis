@@ -13,8 +13,8 @@
           table.table.responsive.table-striped.table-bordered.sentTable cellspacing="0" width="100%"
             thead.thead-dark
               tr
-                th Hora
                 th Fecha
+                th Hora
                 th Rut
                 th Nombre
                 th Estado
@@ -22,8 +22,8 @@
             tbody[style='text-transform: capitalize']
               - @marks.each do |m|
                 tr
-                  td= m.date_time_mark.strftime('%T') 
                   td= m.date_time_mark.strftime('%d/%m/%Y') 
+                  td= m.date_time_mark.strftime('%T') 
                   td= m.employee.rut
                   td= m.employee.names
                   td= m.aasm_state  

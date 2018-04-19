@@ -11,17 +11,26 @@
     #content.tab-content
       #sent.tab-pane.fade.show.active role="tabpanel"
         div.container-fluid.mb-4
-          table.table.responsive.table-striped.table-bordered.sentTable cellspacing="0" width="100%"
+          table.table.responsive.table-striped.table-bordered.reportTable cellspacing="0" width="100%"
             thead.thead-dark
               tr
                 th Fecha
-                th Hora Entrada
-                th Hora Salida colación
-                th Hora Entrada colación
-                th Hora Salida
+                th Hora entrada
+                th Hora salida a colación
+                th Hora entrada a colación
+                th Hora salida
                 th Tiempo colación
                 th Tiempo trabajado
                 th Tiempo no trabajado
 
             tbody[style='text-transform: capitalize']
-              
+              - @summary.each do |day|
+                tr
+                  td= day.first
+                  td= day.second[:time_in]
+                  td= day.second[:time_out_collation]
+                  td= day.second[:time_in_collation]
+                  td= day.second[:time_out]
+                  td= day.second[:collation_time]
+                  td= day.second[:work_time]
+                  td hola
