@@ -1,0 +1,2 @@
+class DetailSchedule < ApplicationRecord
+end
