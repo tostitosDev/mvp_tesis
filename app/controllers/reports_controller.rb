@@ -6,6 +6,11 @@ class ReportsController < ApplicationController
   def show
     @summary = {}
     @employee   = Employee.find(params[:employee_id])
+    @schedule   = EmployeeSchedule.includes(schedule: :detail_schedules).find_by(employee_id: @employee.id)
+    #Que cada marcacion tenga un horario asociado y con esa validar si esta
+    #trabajando mas o menos de lo presupuestado
+    #puts 'data'
+    #puts @schedule.schedule.detail_schedules[0].as_json 
     @start_date = Date.today.at_beginning_of_month
 
     (@start_date..@start_date.end_of_month).each do |day|
@@ -74,5 +79,7 @@ class ReportsController < ApplicationController
     "#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
   end
 
-
+  def calculate_no_work daily_summary
+    
+  end
 end
