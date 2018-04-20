@@ -17,8 +17,8 @@ TypeMark.create id: 4, name_type: 'Salida'
 Schedule.create id:1, name: 'Practica'
 @s1 = Schedule.last
 
-DetailSchedule.create day: 'LU', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
-DetailSchedule.create day: 'MA', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
-DetailSchedule.create day: 'MI', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
-DetailSchedule.create day: 'JU', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
-DetailSchedule.create day: 'VI', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
+DetailSchedule.create day: 'Monday', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
+DetailSchedule.create day: 'Tuesday', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
+DetailSchedule.create day: 'Wednesday', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
+DetailSchedule.create day: 'Thursday', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id
+DetailSchedule.create day: 'Friday', time_in: '08:30', time_out_collation: '14:00', time_in_collation: '15:00', time_out: '18:30', work_time:'09:00', collation_time: '01:00', schedule_id: @s1.id

@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
   def show
     @summary = {}
     @employee   = Employee.find(params[:employee_id])
-    @schedule   = EmployeeSchedule.includes(schedule: :detail_schedules).find_by(employee_id: @employee.id)
+    #@schedule   = EmployeeSchedule.includes(schedule: :detail_schedules).find_by(employee_id: @employee.id)
     #Que cada marcacion tenga un horario asociado y con esa validar si esta
     #trabajando mas o menos de lo presupuestado
     #puts 'data'
@@ -14,16 +14,16 @@ class ReportsController < ApplicationController
     @start_date = Date.today.at_beginning_of_month
 
     (@start_date..@start_date.end_of_month).each do |day|
-      @marks    = Mark.by_day(@employee, day)
+      @marks    = Mark.includes(:employee_schedule).by_day(@employee, day)
       if !@marks.blank?
-        @summary[:"#{day}"] = daily_summary @marks
+        @summary[:"#{day}"] = daily_summary @marks, day
       else
         @summary[:"#{day}"] = {}
       end
     end
   end
 
-  def daily_summary(marks)
+  def daily_summary(marks, day)
     daily_summary = {}
     marks.each do |mark|
       case mark.type_mark_id 
@@ -43,7 +43,7 @@ class ReportsController < ApplicationController
     end
     daily_summary[:collation_time] = calculate_collation daily_summary
     daily_summary[:work_time] = calculate_work daily_summary
-    daily_summary[:no_work_time] = calculate_no_work daily_summary
+    daily_summary[:no_work_time] = calculate_no_work daily_summary, day, marks[0].employee_schedule_id
     daily_summary
   end
 
@@ -79,7 +79,13 @@ class ReportsController < ApplicationController
     "#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
   end
 
-  def calculate_no_work daily_summary
-    
+  def calculate_no_work daily_summary, day, schedule
+    return '' if daily_summary[:work_time] == ''
+    @day_c = day.strftime("%A")
+    puts @day_c
+    @schedule = EmployeeSchedule.find(schedule)
+    @detail_day = DetailSchedule.where(schedule_id: @schedule.schedule_id, day: @day_c)
+    puts 'detail_day'
+    puts @detail_day.as_json
   end
 end

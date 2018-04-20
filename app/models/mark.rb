@@ -1,6 +1,7 @@
 class Mark < ApplicationRecord
   belongs_to :employee
   belongs_to :type_mark
+  belongs_to :employee_schedule
   include AASM
 
 
