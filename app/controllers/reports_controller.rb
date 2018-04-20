@@ -82,10 +82,13 @@ class ReportsController < ApplicationController
   def calculate_no_work daily_summary, day, schedule
     return '' if daily_summary[:work_time] == ''
     @day_c = day.strftime("%A")
-    puts @day_c
     @schedule = EmployeeSchedule.find(schedule)
-    @detail_day = DetailSchedule.where(schedule_id: @schedule.schedule_id, day: @day_c)
-    puts 'detail_day'
-    puts @detail_day.as_json
+    @detail_day = DetailSchedule.where(schedule_id: @schedule.schedule_id, day: @day_c).first!
+    diff = time_diff @detail_day.work_time.to_time, daily_summary[:work_time].to_time
+    if daily_summary[:work_time] >= @detail_day.work_time
+      return '00:00:00'
+    else
+      return diff
+    end
   end
 end
