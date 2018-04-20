@@ -41,6 +41,11 @@ gem "slim-rails"
 #State
 gem 'aasm'
 
+#Managment users and roles
+gem 'devise'
+gem 'authority'
+gem 'rolify'
+
 gem 'rack-cors'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
