@@ -6,6 +6,22 @@
       | #{@employee.names} #{@employee.last_name} #{@employee.mother_last_name}
     hr
 
+= form_tag({controller: "reports", action: "show"}, method: "get", id:"searchForm") do
+  .row.pl-3
+    .col-md-3
+      .form-group
+        label Fecha Inicio
+        input.form-control#start_date type="date" name="start_date" value="#{Date.today.at_beginning_of_month}" required="required"
+    .col-md-3
+      .form-group
+        label Fecha Final
+        input.form-control#end_date type="date" name="end_date" value="#{Date.today.at_end_of_month}" required="required"
+        input type="hidden" name="employee_id" value="#{@employee.id}"
+    .col-md-3.align-self-end
+      .form-group
+        button.btn.btn-primary.search Buscar 
+hr
+
 .row
   .col-md-12.mt-3
     #content.tab-content

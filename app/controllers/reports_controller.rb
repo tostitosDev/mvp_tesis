@@ -4,10 +4,12 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @summary = {}
+    @summary    = {}
     @employee   = Employee.find(params[:employee_id])
-    @start_date = Date.today.at_beginning_of_month
-    (@start_date..@start_date.end_of_month).each do |day|
+    @start_date = params[:start_date] || Date.today.at_beginning_of_month 
+    @end_date   = params[:end_date] || @start_date.end_of_month
+
+    (@start_date.to_date..@end_date.to_date).each do |day|
       @marks    = Mark.includes(:employee_schedule).by_day(@employee, day)
       if !@marks.blank?
         @summary[:"#{day}"] = daily_summary @marks, day
