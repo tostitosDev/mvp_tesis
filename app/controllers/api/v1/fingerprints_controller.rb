@@ -1,6 +1,4 @@
-class Api::V1::FingerprintsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
+class Api::V1::FingerprintsController < ActionController::Base
   def create
     Fingerprint.transaction do
       @employee = Employee.find_by(rut: params[:rut])

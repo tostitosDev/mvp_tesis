@@ -1,6 +1,4 @@
-class Api::V1::MarksController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
+class Api::V1::MarksController < ActionController::Base
   def create
     Mark.transaction do
       @user = Fingerprint.find_by(id_in_sensor: params[:id_in_sensor])
