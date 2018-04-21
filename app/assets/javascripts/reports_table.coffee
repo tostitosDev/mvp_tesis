@@ -5,18 +5,26 @@ class reportsTable
       reportTable.DataTable 
         responsive: true,
         dom: 'Bfrtip',
-        buttons: [{ 
-          extend: 'excelHtml5', 
-          text: 'Descargar', 
+        buttons: [{
+          extend: 'excelHtml5',
           title: 'Reporte asistencia mensual',
+          text: 'Excel',
           exportOptions: {
             columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
           }
-        }], 
+        },
+        {
+          extend: 'pdfHtml5',
+          title: 'Reporte asistencia mensual',
+          text: 'PDF',
+          exportOptions: {
+            columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
+          }
+        }],
         "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por pagina",
+          "lengthMenu": "Mostrar _MENU_ registros por página",
           "zeroRecords": "No se encontraron registros",
-          "info": "Pagina _PAGE_ de _PAGES_",
+          "info": "Página _PAGE_ de _PAGES_",
           "infoEmpty": "No hay registros",
           "infoFiltered": "(filtrado de un total de _MAX_)",
           "search":         "Buscar:",

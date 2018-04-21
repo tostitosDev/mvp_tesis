@@ -17,21 +17,23 @@ html
             = icon('fas','bars')
         /! Sidebar Links
         ul.list-unstyled.components
-          li.active
-            a data-toggle="collapse" 
-              = link_to employees_path do
-                = icon('fas','users')
-                | Trabajador  
+          - if current_user.has_role?(:admin)
+            li.active
+              a data-toggle="collapse" 
+                = link_to employees_path do
+                  = icon('fas','users')
+                  | Trabajador  
           li.active
             a data-toggle="collapse" 
               = link_to marks_path do
                 = icon('fas','flag-checkered')
                 |  Marcación 
-          li.active
-            a data-toggle="collapse" 
-              = link_to reports_path do
-                = icon('fas','clipboard-list')
-                |   Reporteria
+          - if current_user.has_role?(:admin)
+            li.active
+              a data-toggle="collapse" 
+                = link_to reports_path do
+                  = icon('fas','clipboard-list')
+                  |   Reporteria
       #content
           nav.navbar.navbar-expand-md.navbar-dark.bg-dark.flex-row
             a.navbar-brand.mr-auto href="/" 

@@ -9,6 +9,7 @@ class Mark < ApplicationRecord
 
   scope :by_day,    ->(employee, day) {where(employee_id: employee.id, date_time_mark: day.beginning_of_day..day.end_of_day)}
 
+  scope :daily_marks, ->(day) {where(date_time_mark: day.beginning_of_day..day.end_of_day)}
   aasm do 
     #Marcacion correcta, atrasada, fuera de lugar o ausente.
     state :correct, initial: true

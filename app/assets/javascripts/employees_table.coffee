@@ -14,9 +14,9 @@ class employeesTable
           }
         }], 
         "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por pagina",
+          "lengthMenu": "Mostrar _MENU_ registros por página",
           "zeroRecords": "No se encontraron registros",
-          "info": "Pagina _PAGE_ de _PAGES_",
+          "info": "Página _PAGE_ de _PAGES_",
           "infoEmpty": "No hay registros",
           "infoFiltered": "(filtrado de un total de _MAX_)",
           "search":         "Buscar:",

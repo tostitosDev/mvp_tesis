@@ -2,9 +2,23 @@
   .col-md-12  
     hr
     h2.pl-3 
-      | Marcaciones 
+      | Marcaciones diarias
     hr
-
+= form_tag({controller: "marks", action: "index"}, method: "get", id:"searchForm") do
+  .row.pl-3
+    .col-md-3
+      .form-group
+        label Fecha Inicio
+        input.form-control#start_date type="date" name="start_date" value="#{Date.today}" required="required"
+    .col-md-3
+      .form-group
+        label Fecha Final
+        input.form-control#end_date type="date" name="end_date" value="#{Date.today}" required="required"
+    .col-md-3.align-self-end
+      .form-group
+        button.btn.btn-primary.search Buscar 
+  
+hr
 .row
   .col-md-12.mt-3
     #content.tab-content

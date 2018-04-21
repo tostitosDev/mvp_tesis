@@ -4,6 +4,7 @@ class Api::V1::MarksController < ApplicationController
   def create
     Mark.transaction do
       @user = Fingerprint.find_by(id_in_sensor: params[:id_in_sensor])
+      @schedule = EmployeeSchedule.find_by(employee_id: @user.employee_id)
       if @user.blank?
         render :json => {:result => 'no_fingerprint'}
       else
@@ -23,4 +24,8 @@ end
 # t.datetime "updated_at", null: false
 # t.bigint "employee_id"
 # t.string "aasm_state"
+# t.bigint "type_mark_id"
+# t.bigint "employee_schedule_id"
 # t.index ["employee_id"], name: "index_marks_on_employee_id"
+# t.index ["employee_schedule_id"], name: "index_marks_on_employee_schedule_id"
+# t.index ["type_mark_id"], name: "index_marks_on_type_mark_id"

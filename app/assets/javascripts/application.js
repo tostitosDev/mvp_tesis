@@ -20,4 +20,5 @@
 //= require employees_table
 //= require jquery.rut.js
 //= require validate
-//=require reports_table
+//= require reports_table
+//= require marks_search
