@@ -1,9 +1,11 @@
 class ReportsController < ApplicationController
   def index
+    return redirect_to root_path if !current_user.has_role?(:admin)
     @employees  = Employee.all
   end
 
   def show
+    return redirect_to root_path if !current_user.has_role?(:admin)
     @summary    = {}
     @employee   = Employee.find(params[:employee_id])
     @start_date = params[:start_date] || Date.today.at_beginning_of_month 
@@ -21,10 +23,12 @@ class ReportsController < ApplicationController
 
   def daily_summary(marks, day)
     daily_summary = {}
+    daily_summary[:color] = '#ED2939'
     marks.each do |mark|
       case mark.type_mark_id 
       when 1    
         #entrada
+        daily_summary[:color] = color_aasm mark.aasm_state 
         daily_summary[:time_in] = mark.date_time_mark.strftime("%H:%M:%S")
       when 2    
         #salida colacion
@@ -85,6 +89,19 @@ class ReportsController < ApplicationController
       return '00:00:00'
     else
       return diff
+    end
+  end
+
+  def color_aasm aasm_state
+    case aasm_state
+    when 'correct'
+      return ''
+    when 'delayed'
+      return '#ffc107'
+    when 'out'
+      return 'ED2939'
+    when 'away'
+      return '#6c757d'
     end
   end
 end

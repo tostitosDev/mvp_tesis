@@ -8,11 +8,11 @@
 
 = form_tag({controller: "reports", action: "show"}, method: "get", id:"searchForm") do
   .row.pl-3
-    .col-md-3
+    .col-md-3.align-self-end
       .form-group
         label Fecha Inicio
         input.form-control#start_date type="date" name="start_date" value="#{Date.today.at_beginning_of_month}" required="required"
-    .col-md-3
+    .col-md-3.align-self-end
       .form-group
         label Fecha Final
         input.form-control#end_date type="date" name="end_date" value="#{Date.today.at_end_of_month}" required="required"
@@ -20,6 +20,19 @@
     .col-md-3.align-self-end
       .form-group
         button.btn.btn-primary.search Buscar 
+    .col-md-3.align-self-end
+      .row
+        fieldset
+          = icon('fas', 'square', style:'background-color: #000;color:#ffc107;') 
+          label  Atrasada
+      .row
+        fieldset
+          = icon('fas', 'square', style:'background-color: #000;color:#ED2939;') 
+          label  Ausente
+      .row
+        fieldset
+          = icon('fas', 'square', style:'background-color: #000; color:#6c757d;') 
+          label  Fuera de lugar
 hr
 
 .row
@@ -28,7 +41,7 @@ hr
       #sent.tab-pane.fade.show.active role="tabpanel"
         div.container-fluid.mb-4
           table.table.responsive.table-striped.table-bordered.reportTable cellspacing="0" width="100%"
-            thead.thead-dark
+            thead.thead-dark 
               tr
                 th Fecha
                 th Hora entrada
@@ -41,7 +54,7 @@ hr
 
             tbody[style='text-transform: capitalize']
               - @summary.each do |day|
-                tr
+                tr style="background-color:#{day.second[:color]}"
                   td= day.first
                   td= day.second[:time_in]
                   td= day.second[:time_out_collation]
