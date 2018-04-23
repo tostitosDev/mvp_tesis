@@ -41,6 +41,8 @@ gem "slim-rails"
 #State
 gem 'aasm'
 
+gem 'sendgrid-ruby'
+
 #Managment users and roles
 gem 'devise'
 gem 'authority'
