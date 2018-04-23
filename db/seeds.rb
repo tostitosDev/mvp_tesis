@@ -14,6 +14,15 @@ TypeMark.create id: 2, name_type: 'Salida Colación'
 TypeMark.create id: 3, name_type: 'Entrada Colación'
 TypeMark.create id: 4, name_type: 'Salida'
 
+User.create email: 'c.orellanavargas@uandresbello.edu', password: 'tesis2018' 
+@admin = User.last
+@admin.add_role "admin"
+
+User.create email: 'cn.orellanavargas@gmail.com', password: 'tesis2018' 
+@employee = User.last
+@employee.add_role "employee"
+
+
 Schedule.create id:1, name: 'Practica'
 @s1 = Schedule.last
 
