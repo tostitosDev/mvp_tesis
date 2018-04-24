@@ -9,19 +9,33 @@ class Api::V1::MarksController < ActionController::Base
       @employee = Employee.find(@user.employee_id)
       @type = TypeMark.find(params[:mark][:type_mark_id])
 
+
+
       @schedule = EmployeeSchedule.find_by(employee_id: @user.employee_id)
       if @user.blank?
         render :json => {:result => 'not exist'}     
       else
-        @mark = Mark.create latitude: params[:mark][:latitude], 
-                            longitude: params[:mark][:longitude], 
-                            employee_id: @user.employee_id, 
-                            type_mark_id: params[:mark][:type_mark_id], 
-                            date_time_mark: params[:mark][:date_time_mark],
-                            employee_schedule_id: @schedule.id
+        current_date_end = params[:mark][:date_time_mark].to_datetime.end_of_day
+        current_date_start = params[:mark][:date_time_mark].to_datetime.beginning_of_day
+        puts 'current start'
+        puts current_date_start
+        puts 'current end'
+        puts current_date_end
 
-        send_email @employee.names, @employee.email, params[:mark][:date_time_mark].to_datetime, @type.name_type 
-        render :json => {:result => 'ok'}
+        @oldMark = Mark.where(date_time_mark: current_date_start..current_date_end,type_mark_id: params[:mark][:type_mark_id])
+        if @oldMark.blank?
+          @mark    = Mark.create latitude: params[:mark][:latitude], 
+                              longitude: params[:mark][:longitude], 
+                              employee_id: @user.employee_id, 
+                              type_mark_id: params[:mark][:type_mark_id], 
+                              date_time_mark: params[:mark][:date_time_mark],
+                              employee_schedule_id: @schedule.id
+
+          send_email @employee.names, @employee.email, params[:mark][:date_time_mark].to_datetime, @type.name_type 
+          render :json => {:result => 'ok'}
+        else
+          render :json => {:result => 'mark exist'}
+        end
       end
     end
   rescue ActiveRecord::RecordInvalid => exception
@@ -32,7 +46,7 @@ class Api::V1::MarksController < ActionController::Base
     puts 'send to '
     puts email
     mail = Mail.new
-    mail.from = Email.new(email: 'lestat__x@hotmail.com')
+    mail.from = Email.new(email: 'catamuneche@hotmail.com')
     mail.subject = 'Comprobante de marcación'
     personalization = Personalization.new
     personalization.add_to(Email.new(email: email))
@@ -49,11 +63,12 @@ class Api::V1::MarksController < ActionController::Base
     mail.add_personalization(personalization)
 
     #Select template_id 
-    mail.template_id = '0697a5dd-1b08-44da-b680-4f968c7dd53f'
+    mail.template_id = 'fa17591f-1280-4a5b-87b0-6066e5221d5a'
 
-    @API = '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'
-    #sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-    sg = SendGrid::API.new(api_key: @API)
+    #@API = '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'
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    puts ENV['SENDGRID_API_KEY']
+    #sg = SendGrid::API.new(api_key: @API)
     
     begin
         response = sg.client.mail._("send").post(request_body: mail.to_json)
